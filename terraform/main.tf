@@ -6,7 +6,7 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-# Run an Ubuntu 18.04 AMI on the EC2 instance in ap-southeast-1
+# Run an Ubuntu 20.04 AMI on the EC2 instance in ap-southeast-1
 # and start a web server after it boots
 resource "aws_instance" "example" {
   ami                    = data.aws_ami.ubuntu20.image_id
@@ -22,7 +22,7 @@ resource "aws_instance" "example" {
   }
 }
 
-# Create a security group to allow the HTTP requests on port 8080
+# Create a security group to allow the HTTP requests on a specified port
 resource "aws_security_group" "instance" {
   ingress {
     from_port   = var.server_port
