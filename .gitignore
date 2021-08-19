@@ -32,7 +32,10 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+terraform/.terraform.lock.hcl
 
 # Others
 .DS_Store
 .vscode/
+test/go.mod
+test/go.sum
