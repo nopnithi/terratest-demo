@@ -1,9 +1,14 @@
 terraform {
-  required_version = ">= 0.12.26"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
 }
-
 provider "aws" {
-  region = "ap-southeast-1"
+  profile   = "default"
+  region    = "ap-southeast-1"
 }
 
 # Run an Ubuntu 20.04 AMI on the EC2 instance in ap-southeast-1
@@ -36,22 +41,18 @@ resource "aws_security_group" "instance" {
 data "aws_ami" "ubuntu20" {
   most_recent = true
   owners      = ["099720109477"]
-
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
   filter {
     name   = "architecture"
     values = ["x86_64"]
   }
-
   filter {
     name   = "image-type"
     values = ["machine"]
   }
-
   filter {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
